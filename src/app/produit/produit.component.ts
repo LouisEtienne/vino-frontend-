@@ -16,6 +16,7 @@ export class ProduitComponent implements OnInit {
   
   constructor(private bieroServ:ApibieroService) { }
 
+  
   ngOnInit(): void {
     this.modifForm = new FormGroup({
       nom: new FormControl(this.produit.nom,
@@ -26,6 +27,7 @@ export class ProduitComponent implements OnInit {
         [Validators.required, Validators.minLength(3)]),
     })
   }
+
   changement():void{
     console.log(this.produit.nom)
   }

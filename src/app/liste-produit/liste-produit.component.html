@@ -47,7 +47,7 @@
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef>Action</th>
                 <td mat-cell *matCellDef="let bouteille"> 
-                    <button class="liste__btn" routerLink=""  mat-mini-fab aria-label="Example icon button with a home icon"><!--(click)="effacerBiere(bouteille.id_bouteille)"-->
+                    <button class="liste__btn" routerLink="" (click)="ajouterQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon"><!--(click)="effacerBiere(bouteille.id_bouteille)"-->
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="liste__btn" routerLink=""  mat-mini-fab aria-label="Example icon button with a home icon"><!--(click)="effacerBiere(bouteille.id_bouteille)"-->

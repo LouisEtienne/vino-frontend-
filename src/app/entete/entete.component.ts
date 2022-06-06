@@ -20,6 +20,7 @@ export class EnteteComponent implements OnInit {
   estConnecte!:boolean;
   sTitre!:string;
   biere!:IProduit;
+  
 
   // displayedColumns: string[] = ["image","nom","brasserie","date_ajout", "date_modif", "action"];
   // dataSource !: MatTableDataSource<IProduit>;

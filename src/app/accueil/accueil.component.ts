@@ -17,3 +17,4 @@ export class AccueilComponent implements OnInit {
   }
 
 }
+

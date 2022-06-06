@@ -13,6 +13,7 @@ export class DialogModifComponent implements OnInit {
   @Input() biere!:IProduit;
   modifierBiereForm!:FormGroup;
 
+  
 
 constructor(private formBuilder : FormBuilder, public dialogRef: MatDialogRef<DialogModifComponent>,@Inject(MAT_DIALOG_DATA) public editData: IProduit, private bieroServ :ApibieroService) {
 }

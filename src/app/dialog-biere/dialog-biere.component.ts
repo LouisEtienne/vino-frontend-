@@ -25,6 +25,8 @@ ngOnInit(): void {
   
 }
 
+
+
 ajouterBiere():void{
   if(this.creerBiereForm.valid){
     console.log(this.creerBiereForm.value)
