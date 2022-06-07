@@ -11,44 +11,48 @@ import { IProduit } from '../iproduit';
 })
 export class DialogBiereComponent implements OnInit {
   @Input() biere!:IProduit;
-  creerBiereForm!:FormGroup;
+  creerBouteilleForm!:FormGroup;
+  bouteilles: any;
+  bouteilleId: any;
 
+  constructor(private formBuilder : FormBuilder, public dialogRef: MatDialogRef<DialogBiereComponent>,
+                                    @Inject(MAT_DIALOG_DATA) biere: IProduit, private bieroServ :ApibieroService){}
 
-constructor(private formBuilder : FormBuilder, public dialogRef: MatDialogRef<DialogBiereComponent>,@Inject(MAT_DIALOG_DATA) biere: IProduit, private bieroServ :ApibieroService) {
-}
+  ngOnInit(): void {
+    this.bieroServ.getListeBouteilles().subscribe((data: any) => { this.bouteilles = data.data; })
+    
+      this.creerBouteilleForm = this.formBuilder.group({
+        id_bouteille : ['',Validators.required],
+        millesime : ['',Validators.required],
+        quantite : ['',Validators.required],
+        date_achat : ['',Validators.required],
+        prix : ['',Validators.required],
+        garde_jusqua : ['',Validators.required],
+        notes : ['',Validators.required]
+      })
+    
+    }
 
-ngOnInit(): void {
-  this.creerBiereForm = this.formBuilder.group({
-    nom : ['',Validators.required],
-    brasserie : ['',Validators.required]
-  })
-  
-}
-
-ajouterBiere():void{
-  if(this.creerBiereForm.valid){
-    console.log(this.creerBiereForm.value)
-    let biere:IProduit = this.creerBiereForm.value;  
-    console.log(biere)
-    this.bieroServ.ajouterBiere(biere).subscribe({
-      next:(reponse)=>{
-        
-        console.log('Vin ajoutee')
-        this.dialogRef.close('add');  
-      },
-      error:(reponse)=>{
-        this.dialogRef.close('add');
-        
+    ajouterBouteille():void{
+      if(this.creerBouteilleForm.valid){
+        this.creerBouteilleForm.value.id_bouteille = this.bouteilleId;
+        let bouteilles:any = this.creerBouteilleForm.value;  
+        console.log(bouteilles)
+        this.bieroServ.ajouterBouteille(bouteilles).subscribe({
+        next:(reponse)=>{
+    
+          console.log('Vin ajoutee')
+          this.dialogRef.close('add');  
+        },
+        error:(reponse)=>{
+          this.dialogRef.close('add');
+          
+        }
+        });
       }
-    });
-  }
-  
-}
+    }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  
-
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
 }

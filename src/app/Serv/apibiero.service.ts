@@ -20,6 +20,7 @@ export class ApibieroService {
     );*/
   }
 
+  //Dmitriy
 
 
 
@@ -56,17 +57,16 @@ export class ApibieroService {
 
 
 //Dmitriy
-  modifierBiere(data:IProduit):Observable<any>{
-    //delete data.date_ajout; // Pour effacer des propriétés... 
-
+  modifierBouteille(data:IProduit):Observable<any>{
     let httpOption = {
       headers : new HttpHeaders({
-        'Content-type' : 'application/json',
-        'Authorization' : 'Basic '+ btoa("biero:biero")
+          'Content-type': 'application/json',
+          'Authorization' : 'Basic '+ btoa("biero:biero")
       })
     };
+    //console.log(data.id_bouteille_cellier);
     
-    return this.http.post<IProduit>(this.url + data.id_bouteille, data, httpOption);
+    return this.http.post<IProduit>(this.url + data.id, data, httpOption);
   }
 
 
@@ -81,8 +81,8 @@ export class ApibieroService {
 
 
 
-  //Vsvolod
-  ajouterBiere(data:IProduit):Observable<any>{
+  //Vsevolod
+  ajouterBouteille(data:IProduit):Observable<any>{
     let httpOption = {
       headers : new HttpHeaders({
         'Content-type' : 'application/json',
@@ -92,7 +92,10 @@ export class ApibieroService {
     return this.http.put<IProduit>(this.url, data, httpOption);
   }
 
-
+  getListeBouteilles():Observable<IListeProduit>{
+    console.log("getListeBouteille");
+    return this.http.get<IListeProduit>(this.url+'bouteilles');
+  }
 
 
 

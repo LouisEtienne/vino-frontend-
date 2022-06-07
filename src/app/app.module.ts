@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {DialogBiereComponent } from './dialog-biere/dialog-biere.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -36,7 +38,7 @@ import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
     NonTrouveComponent,
     DetailsProduitComponent,
     DialogBiereComponent,
-    DialogModifComponent
+    DialogModifComponent,
   ],
   entryComponents:[DialogBiereComponent],
   imports: [
@@ -55,7 +57,9 @@ import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
     MatInputModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSelectModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
   
   providers: [],
