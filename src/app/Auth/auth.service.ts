@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IUser } from '../iuser';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  url:string = "http://127.0.0.1:8000/webservice/php/usager/";
+
   etatConnexion:boolean = false;
 
   estConnecte:BehaviorSubject<boolean>;
@@ -13,7 +17,7 @@ export class AuthService {
   titrePage:BehaviorSubject<string>;
   titrePage$:Observable<string>;
   
-  constructor() {
+  constructor(private http:HttpClient) {
     this.estConnecte = new BehaviorSubject<boolean>(false);
     this.estConnecte$ = this.estConnecte.asObservable();
 
@@ -27,6 +31,33 @@ export class AuthService {
 
   statut():Observable<boolean>{
     return this.estConnecte;
+  }
+
+  /** GET requête pour afficher les bouteilles du cellier */
+  getLoggedUser():Observable<IUser>{
+    return this.http.get<IUser>(this.url);
+}
+
+  login(data:any):Observable<any>{
+    let httpOption = {
+      headers : new HttpHeaders({
+          'Content-type' : 'application/json',
+          // 'Authorization' : 'Basic '+ btoa("biero:biero")
+      })                                                                                                    
+    };  
+    console.log(data)                                                                                                                   
+    return this.http.put<IUser>(this.url +"login", data, httpOption);
+  }
+
+  register(data:any):Observable<any>{
+    let httpOption = {
+      headers : new HttpHeaders({
+          'Content-type' : 'application/json',
+          // 'Authorization' : 'Basic '+ btoa("biero:biero")
+      })                                                                                                    
+    };  
+    console.log(data)                                                                                                                
+    return this.http.put<IUser>(this.url +"registre", data, httpOption);
   }
 
   setConnexion(etatConnexion:boolean):void {
