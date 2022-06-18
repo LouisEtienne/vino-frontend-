@@ -24,6 +24,7 @@ import {DialogLoginComponent } from './dialog-login/dialog-login.component';
 import {DialogRegisterComponent } from './dialog-register/dialog-register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 
@@ -39,6 +40,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     DialogModifComponent,
     DialogLoginComponent,
     DialogRegisterComponent,
+    DialogDeleteComponent,
   ],
   entryComponents:[DialogBouteilleComponent],
   imports: [

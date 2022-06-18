@@ -4,6 +4,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { GardienConnexionGuard } from './Auth/gardien-connexion.guard';
 import { DialogBouteilleComponent } from './dialog-bouteille/dialog-bouteille.component';
 import { DialogModifComponent } from './dialog-modif/dialog-modif.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { DetailsProduitComponent } from './details-produit/details-produit.component';
 import { ListeProduitComponent } from './liste-produit/liste-produit.component';
 import { NonTrouveComponent } from './non-trouve/non-trouve.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path : "produit/:id", component:DetailsProduitComponent, canActivate:[GardienConnexionGuard]},
   {path : "", component:DialogBouteilleComponent, canActivate:[GardienConnexionGuard]},
   {path : "modifier/:id", component:DialogModifComponent, canActivate:[GardienConnexionGuard]},
+  {path : "delete/:id", component:DialogDeleteComponent, canActivate:[GardienConnexionGuard]},
   {path : "**", component:NonTrouveComponent},
 
 ];

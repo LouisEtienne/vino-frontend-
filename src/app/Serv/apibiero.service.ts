@@ -29,6 +29,11 @@ export class ApibieroService {
         return this.http.post<IProduit>(this.url + data.id, data, httpOption);
     }
 
+    /** DELETE requête pour supprimer la bouteille dans le cellier */
+    effacerBouteille(id_bouteille:number):Observable<any>{
+        return this.http.delete<IProduit>(this.url + id_bouteille);
+    }
+
     /** PUT requête pour ajouter la bouteille dans le cellier */
     ajouterBouteille(data:IProduit):Observable<any>{
         let httpOption = {
@@ -71,5 +76,4 @@ export class ApibieroService {
     getBouteille(id:number|string):Observable<IProduit>{
         return this.http.get<IProduit>(this.url+id);
     }
-
 }

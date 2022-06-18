@@ -4,6 +4,7 @@ import { IProduit } from '../iproduit';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { DialogBouteilleComponent } from '../dialog-bouteille/dialog-bouteille.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -70,7 +71,18 @@ export class ListeProduitComponent implements OnInit {
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();
         });
-        
+    }
+
+    /** Bouton Supprimer la bouteille */
+    deleteDialog(bouteille:IProduit): void {
+        const dialogRef = this.dialog.open(DialogDeleteComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            maxHeight: '540px',
+            data:bouteille
+        }).afterClosed().subscribe(res=>{
+            this.getAllBouteillesCellier();
+        });
     }
 
     /** Bouton Ajouter une bouteille */

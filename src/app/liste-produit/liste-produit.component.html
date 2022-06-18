@@ -52,10 +52,13 @@
                         <mat-icon>add</mat-icon>
                     </button>
                     <button class="liste__btn" routerLink="" (click)="boireQuantiteBouteilleCellier(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon"><!--(click)="effacerBiere(bouteille.id_bouteille)"-->
-                    <mat-icon>remove</mat-icon>
+                        <mat-icon>remove</mat-icon>
                     </button>
                     <button class="liste__btn" routerLink="" (click)="editDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="liste__btn" routerLink="" (click)="deleteDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
