@@ -34,6 +34,7 @@ export class ListeProduitComponent implements OnInit {
     ngOnInit(): void {
         this.getAllBouteillesCellier();
         this.authServ.setTitre("Mon cellier");
+        this.authServ.setConnexion(true);
     }
 
     /** Liste des bouteilles du cellier */
@@ -65,24 +66,12 @@ export class ListeProduitComponent implements OnInit {
     editDialog(bouteille:IProduit): void {
         const dialogRef = this.dialog.open(DialogModifComponent, {
             width: '100%',
-            maxWidth: '370px',
-            maxHeight: '540px',
+            maxWidth: '300px',
             data:bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();
         });
-    }
-
-    /** Bouton Supprimer la bouteille */
-    deleteDialog(bouteille:IProduit): void {
-        const dialogRef = this.dialog.open(DialogDeleteComponent, {
-            width: '100%',
-            maxWidth: '370px',
-            maxHeight: '540px',
-            data:bouteille
-        }).afterClosed().subscribe(res=>{
-            this.getAllBouteillesCellier();
-        });
+        
     }
 
     /** Bouton Ajouter une bouteille */
@@ -90,13 +79,24 @@ export class ListeProduitComponent implements OnInit {
         this.getAllBouteillesCellier();
         this.dialog.open(DialogBouteilleComponent, {
             width: '100%',
-            maxWidth: '370px',
-            maxHeight: '540px',
+            maxWidth: '300px',
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
             this.getAllBouteillesCellier();
         });
     }
+
+    /** Bouton Supprimer la bouteille */
+    deleteDialog(bouteille:IProduit): void {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+        width: '100%',
+        maxWidth: '370px',
+        maxHeight: '540px',
+        data:bouteille
+    }).afterClosed().subscribe(res=>{
+        this.getAllBouteillesCellier();
+    });
+}
 
     /** Bouton Augmenter le nombre de bouteilles */
     ajouterQuantiteBouteilleCellier(data:IProduit){

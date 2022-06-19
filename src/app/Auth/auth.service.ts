@@ -33,32 +33,10 @@ export class AuthService {
     return this.estConnecte;
   }
 
-  /** GET requête pour afficher les bouteilles du cellier */
-  getLoggedUser():Observable<IUser>{
-    return this.http.get<IUser>(this.url);
-}
-
-  login(data:any):Observable<any>{
-    let httpOption = {
-      headers : new HttpHeaders({
-          'Content-type' : 'application/json',
-          // 'Authorization' : 'Basic '+ btoa("biero:biero")
-      })                                                                                                    
-    };  
-    console.log(data)                                                                                                                   
-    return this.http.put<IUser>(this.url +"login", data, httpOption);
-  }
-
-  register(data:any):Observable<any>{
-    let httpOption = {
-      headers : new HttpHeaders({
-          'Content-type' : 'application/json',
-          // 'Authorization' : 'Basic '+ btoa("biero:biero")
-      })                                                                                                    
-    };  
-    console.log(data)                                                                                                                
-    return this.http.put<IUser>(this.url +"registre", data, httpOption);
-  }
+//   /** GET requête pour afficher les bouteilles du cellier */
+//   getLoggedUser():Observable<IUser>{
+//     return this.http.get<IUser>(this.url);
+// }
 
   setConnexion(etatConnexion:boolean):void {
     this.etatConnexion = etatConnexion;
