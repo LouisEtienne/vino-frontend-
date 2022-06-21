@@ -158,4 +158,5 @@ export class CellierComponent implements OnInit {
     this.getCeCellier();
     }
 
+    
 }
