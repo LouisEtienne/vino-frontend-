@@ -37,6 +37,7 @@ import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { DialogRegisterComponent } from './dialog-register/dialog-register.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,

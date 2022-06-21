@@ -23,3 +23,4 @@ describe('EnteteComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

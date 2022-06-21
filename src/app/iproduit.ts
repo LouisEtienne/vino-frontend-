@@ -18,3 +18,4 @@ export interface IProduit {
     description: string;
     id_usager: string;
 }
+
