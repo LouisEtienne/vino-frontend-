@@ -73,7 +73,7 @@ export class DialogLoginComponent implements OnInit {
                     this.authServ.setConnexion(!this.estConnecte);
                     this.loginForm.reset();
                     sessionStorage.setItem("id_usager", user.id);
-                    console.log(sessionStorage.id_usager);
+                    // console.log(sessionStorage.id_usager);
                     
                     this.authServ.setTitre('Mon cellier');
                     this.router.navigateByUrl("/usager");

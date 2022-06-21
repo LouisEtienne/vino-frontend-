@@ -25,8 +25,8 @@ import { Params } from '@angular/router';
     
 export class CellierComponent implements OnInit {
     bouteille !: IProduit;
-    cellierData: string;
-    id: string;
+    cellierData!: string;
+    id!: string;
 
     estEditable:boolean= false;
     
@@ -70,7 +70,7 @@ export class CellierComponent implements OnInit {
 
     /** Liste des bouteilles du cellier */
     getCeCellier() {
-        const id_usager = sessionStorage.id_usager;
+        const id_usager = sessionStorage.getItem("id_usager");
         this.bieroServ.getCellierParIdEtUsager(this.cellierData, id_usager)
         .subscribe({
             next:(res)=>{
@@ -141,11 +141,9 @@ export class CellierComponent implements OnInit {
             this.dataSource = new MatTableDataSource(res.data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        },
-        error:(err)=>{
-            alert("erreur")
         }
     })
+    this.getCeCellier();
     }
 
     /** Bouton Réduire le nombre de bouteilles */
@@ -155,11 +153,9 @@ export class CellierComponent implements OnInit {
             this.dataSource = new MatTableDataSource(res.data);
             this.dataSource.paginator = this.paginator;
             this.dataSource.sort = this.sort;
-        },
-        error:(err)=>{
-            alert("erreur")
         }
     })
+    this.getCeCellier();
     }
 
 }
