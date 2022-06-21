@@ -4,7 +4,7 @@
         <mat-tab label="Mes celliers">
             <!--Bouton Ajouter-->
             <div class="create-btn">
-                <a class="liste__btn-saq-creer fill" mat-raised-button routerLink="" (click)="createDialogCellier()">Ajouter un cellier</a>
+                <a class="liste__btn-saq-creer fill" mat-raised-button (click)="createDialogCellier()">Ajouter un cellier</a>
             </div>
             
             <!--Filtre-->
@@ -29,10 +29,10 @@
                     <ng-container matColumnDef="action">
                         <th class="centre" mat-header-cell *matHeaderCellDef>Action</th>
                         <td class="centre" mat-cell *matCellDef="let cellier"> 
-                            <button class="liste__btn" routerLink="" (click)="editDialogCellier(cellier)" mat-mini-fab aria-label="Example icon button with a home icon">
+                            <button class="liste__btn" (click)="editDialogCellier(cellier)" mat-mini-fab aria-label="Example icon button with a home icon">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button class="liste__btn" routerLink="" (click)="deleteDialogCellier(cellier)" mat-mini-fab aria-label="Example icon button with a home icon">
+                            <button class="liste__btn" (click)="deleteDialogCellier(cellier)" mat-mini-fab aria-label="Example icon button with a home icon">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </td>

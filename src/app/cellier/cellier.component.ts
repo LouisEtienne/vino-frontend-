@@ -5,6 +5,7 @@ import { ApibieroService } from '../Serv/apibiero.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogModifComponent } from '../dialog-modif/dialog-modif.component';
 import { DialogAjoutBouteilleComponent } from '../dialog-ajout-bouteille/dialog-ajout-bouteille.component';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -116,6 +117,18 @@ export class CellierComponent implements OnInit {
             data: this.bouteille
         }).afterClosed().subscribe(res=>{
             this.getCeCellier();
+        });
+    }
+
+    /** Bouton Supprimer la bouteille */
+    deleteDialog(bouteille:IProduit): void {
+        const dialogRef = this.dialog.open(DialogDeleteComponent, {
+            width: '100%',
+            maxWidth: '370px',
+            maxHeight: '540px',
+            data:bouteille
+        }).afterClosed().subscribe(res=>{
+            this.getCeCellier(); //ici
         });
     }
 

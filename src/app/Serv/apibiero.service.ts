@@ -68,7 +68,7 @@ export class ApibieroService {
 
     /** ---- Louis-Etienne, Vsevolod ---- DELETE requête pour supprimer la bouteille dans le cellier */
     effacerBouteille(id_bouteille:string, id_cellier:string):Observable<any>{
-        return this.http.delete<IProduit>(this.url+'cellier/cellier/'+id_cellier+'/'+id_bouteille+'/suppression' );
+        return this.http.delete<IProduit>(this.url+'cellier/cellier/'+id_cellier+'/'+id_bouteille+'/suppression');
     }
 
     /** ---- DMITRIY --- PUT requête pour ajouter la bouteille dans le cellier */

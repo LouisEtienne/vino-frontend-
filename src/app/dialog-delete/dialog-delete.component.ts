@@ -2,8 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ApibieroService } from '../Serv/apibiero.service';
 import { IProduit } from '../iproduit';
-import { Router } from '@angular/router';
-
 
 @Component({
     selector: 'app-dialog-delete',
@@ -19,7 +17,6 @@ export class DialogDeleteComponent implements OnInit {
         public dialogRef: MatDialogRef<DialogDeleteComponent>,
         @Inject(MAT_DIALOG_DATA) public editData: IProduit,
         private bieroServ: ApibieroService,
-        private router : Router,
     ) {}
     
     ngOnInit(): void {
@@ -28,23 +25,19 @@ export class DialogDeleteComponent implements OnInit {
 
     /** Supprime toutes les données de bouteille de la cellier */
     effacerBouteille():void{
-            let id_bouteille = this.editData.id_bouteille;
-            let id_cellier = this.editData.id_cellier;
-            console.log(id_bouteille)
-            this.bieroServ.effacerBouteille(id_bouteille, id_cellier).subscribe({
-            next:(reponse)=>{
-                this.dialogRef.close('del'); 
-                // this.bieroServ.
-                // this.router.navigateByUrl("./liste");
+        let id_bouteille = this.editData.id_bouteille;
+        let id_cellier = this.editData.id_cellier;
+        console.log(id_cellier)
+        console.log(id_bouteille)
 
-                alert('bouteille supprimée')
-            },
-            error:(reponse)=>{
-                // this.router.navigateByUrl("/liste");
-                alert('arranger backend svp')
-
-                this.dialogRef.close('del');
-            }
-            });
+        this.bieroServ.effacerBouteille(id_bouteille, id_cellier).subscribe({
+        next:(reponse)=>{
+            this.dialogRef.close('del');  
+            console.log('supprimé')
+        },
+        error:(reponse)=>{
+            this.dialogRef.close('del');
         }
+        });
+    }
 }

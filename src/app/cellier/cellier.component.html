@@ -7,7 +7,7 @@
     </div>
     <!--Bouton Voir mes celliers-->
     <div class="create-btn">
-        <a class=""  routerLink="/usager" >Voir mes celliers</a>
+        <a class="liste__btn-saq-creer fill" mat-raised-button routerLink="/usager" >Voir mes celliers</a>
     </div>
     <mat-form-field appearance="standard">
     <!--Filtre-->
@@ -61,6 +61,9 @@
                     </button>
                     <button class="liste__btn" (click)="editDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
                         <mat-icon>edit</mat-icon>
+                    </button>
+                    <button class="liste__btn" (click)="deleteDialog(bouteille)" mat-mini-fab aria-label="Example icon button with a home icon">
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </ng-container>
