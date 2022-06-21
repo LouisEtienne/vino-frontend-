@@ -3,24 +3,30 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ApibieroService } from '../Serv/apibiero.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IProduit } from '../iproduit';
+import { DataService } from '../Data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-dialog-bouteille',
-    templateUrl: './dialog-bouteille.component.html',
-    styleUrls: ['./dialog-bouteille.component.scss']
+    selector: 'app-dialog-ajout-bouteille',
+    templateUrl: './dialog-ajout-bouteille.component.html',
+    styleUrls: ['./dialog-ajout-bouteille.component.scss']
 })
     
-export class DialogBouteilleComponent implements OnInit {
+export class DialogAjoutBouteilleComponent implements OnInit {
     @Input() bouteille!:IProduit;
     creerBouteilleForm!:FormGroup;
     bouteilles: any;
     getBouteilleId: any;
+    cellierData: string;
+    id_cellier: string;
 
     constructor(
                     private formBuilder: FormBuilder,
-                    public dialogRef: MatDialogRef<DialogBouteilleComponent>,
+                    public dialogRef: MatDialogRef<DialogAjoutBouteilleComponent>,
                     @Inject(MAT_DIALOG_DATA) bouteille: IProduit,
-                    private bieroServ: ApibieroService
+                    private bieroServ: ApibieroService,
+                    private data: DataService,
+                    private router: Router
                 ) { }
 
     /** Modèles d'expression régulière */
@@ -30,8 +36,12 @@ export class DialogBouteilleComponent implements OnInit {
     anneeRegex = /^(18|19|20)[\d]{2,2}$/;
 
     ngOnInit(): void {
+        this.data.ceCellierData.subscribe(cellierData => this.cellierData = cellierData);
         /** Obtenir une nomenclature des bouteilles importées de la SAQ */
         this.bieroServ.getListeBouteilles().subscribe((data: any) => { this.bouteilles = data.data; })
+        
+        //this.data.ceCellierData.subscribe(cellierData => this.id_cellier = cellierData);
+        console.log(this.cellierData);
         
         /** Forme et validation des données saisies */
         this.creerBouteilleForm = this.formBuilder.group({
@@ -46,12 +56,20 @@ export class DialogBouteilleComponent implements OnInit {
     }
 
     /** Fonction pour ajouter une bouteille au cellier */
-    ajouterBouteille():void{
+    ajouterBouteille(): void{   
+        this.id_cellier = this.cellierData;
+        console.log(this.id_cellier);
+        
         if (this.creerBouteilleForm.valid) {
             this.creerBouteilleForm.value.id_bouteille = this.getBouteilleId;
-            let bouteilles:any = this.creerBouteilleForm.value;  
+            let bouteilles: any = this.creerBouteilleForm.value;
+            bouteilles.id_cellier = this.id_cellier;
+            let id_cellier = bouteilles.id_cellier
+            console.log(bouteilles);
+            
             this.bieroServ.ajouterBouteille(bouteilles).subscribe({
-                next:(reponse)=>{
+                next: (reponse) => {
+                    //this.router.navigateByUrl('cellier/'.this.id_cellier);
                     this.dialogRef.close('add');  
                 },
                 error:(reponse)=>{
